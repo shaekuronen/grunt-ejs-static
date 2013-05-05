@@ -34,7 +34,7 @@ module.exports = function(grunt) {
         options: {
           src: 'dev/pages/',
           dest: 'production/',
-          index_page: 'dev/pages/home',
+          index_page: 'dev/pages/home/index.html',
           data: 'dev/data/pages.json'
         },
         files: {

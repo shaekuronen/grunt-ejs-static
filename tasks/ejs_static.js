@@ -40,6 +40,8 @@ module.exports = function(grunt) {
       })
       .forEach(function(filepath) {
 
+        // grunt.log.writeln('the file path is ' + filepath);
+
         // get the parent directory of layout manager
         var the_parent_directory = get_parent_directory(filepath);
 
@@ -58,8 +60,18 @@ module.exports = function(grunt) {
         // render the template as html
         var the_rendered_template = ejs.render(the_template, this_data);
 
-        // write the rendered template to the destination directory
-        grunt.file.write(the_path_to_rendered_template, the_rendered_template);
+        // check to see if the current file is specified as the root index.html page
+        if (filepath === options.index_page) {
+
+          // write the compiled template to the document root
+          grunt.file.write(options.dest + 'index.html', the_rendered_template);
+
+        } else {
+
+          // write the compiled template to the destination directory
+          grunt.file.write(the_path_to_rendered_template, the_rendered_template);
+
+        }
 
       });
 
