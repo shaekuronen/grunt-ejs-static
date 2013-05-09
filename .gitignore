@@ -1,6 +1,5 @@
 node_modules
 npm-debug.log
-dev
-production
-preview
 .DS_Store
+dev_BAK
+production_BAK
