@@ -32,7 +32,8 @@
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.1.2",
     "grunt": "~0.4.1",
-    "ejs": "~0.8.3"
+    "ejs": "~0.8.3",
+    "grunt-contrib-copy": "~0.4.1"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
@@ -41,6 +42,10 @@
     "gruntplugin",
     "ejs",
     "static html",
-    "static site generator"
+    "static site generator",
+    "templates",
+    "templating engine",
+    "template",
+    "embedded js"
   ]
 }

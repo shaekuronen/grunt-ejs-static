@@ -28,17 +28,28 @@ module.exports = function(grunt) {
       tests: ['tmp'],
     },
 
+    copy: {
+      preview: {
+        files: [
+          {expand: true, cwd: 'example/dev/', src: ['img/**'], dest: 'example/preview/'},
+          {expand: true, cwd: 'example/dev/', src: ['css/**'], dest: 'example/preview/'},
+          {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/preview/'},
+          {expand: true, cwd: 'example/dev/', src: ['.ht*'], dest: 'example/preview/'}
+        ]
+      }
+    },
+
     // Configuration to be run (and then tested).
     ejs_static: {
       preview: {
         options: {
-          src: 'dev/pages/',
-          dest: 'production/',
-          index_page: 'dev/pages/home/index.html',
-          data: 'dev/data/pages.json'
+          src: 'example/dev/pages/',
+          dest: 'example/preview/',
+          index_page: 'example/dev/pages/home/index.html',
+          data: 'example/dev/data/pages.json'
         },
         files: {
-          'production/': 'dev/pages/**/index.html'
+          'example/preview/': 'example/dev/pages/**/index.html'
         },
       }
     },
@@ -57,11 +68,21 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', [
     'clean', 
+    'ejs_static'
+    // , 
+    // 'nodeunit'
+  ]);
+
+  // preview the site during development
+  grunt.registerTask('preview', [
+    'clean',
+    'copy:preview', 
     'ejs_static'
     // , 
     // 'nodeunit'

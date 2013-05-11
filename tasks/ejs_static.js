@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       })
       .forEach(function(filepath) {
 
-        // grunt.log.writeln('the file path is ' + filepath);
+        grunt.log.writeln('the file path is ' + filepath);
 
         // get the parent directory of layout manager
         var the_parent_directory = get_parent_directory(filepath);
@@ -50,6 +50,8 @@ module.exports = function(grunt) {
 
         // get the template
         var the_template = grunt.file.read(filepath);
+
+        grunt.log.writeln(the_template);
 
         // get the data using bracket notation so it's possible for the identifier to start with a number
         var this_data = the_data[the_parent_directory];
@@ -80,6 +82,8 @@ module.exports = function(grunt) {
 
     // get the parent directory of layout manager 
     function get_parent_directory(path_to_file) {
+
+      grunt.log.writeln('get parent directory happened');
 
         var tokens = [];
 
