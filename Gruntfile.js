@@ -25,7 +25,9 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      tests: ['tmp'],
+      preview: ['example/preview'],
+      optimize: ['example/production'],
+      post_optimize: ['example/production/pages', 'example/production/templates']
     },
 
     copy: {
@@ -90,7 +92,7 @@ module.exports = function(grunt) {
 
   // build the site for preview during development
   grunt.registerTask('preview', [
-    'clean',
+    'clean:preview',
     'copy:preview', 
     'ejs_static:preview'
     // , 
@@ -99,9 +101,10 @@ module.exports = function(grunt) {
 
   // optimize the site before deploying to production
   grunt.registerTask('optimize', [
-    'clean',
+    'clean:optimize',
     'copy:optimize', 
-    'ejs_static:optimize'
+    'ejs_static:optimize',
+    'clean:post_optimize'
     // , 
     // 'nodeunit'
   ]);
