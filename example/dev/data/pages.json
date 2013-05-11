@@ -1,6 +1,11 @@
 {
+
   "home": {
-    "test_key": "test_value"    
+    "page_name": "home",
+    "page_category": "page",
+    "title": "Grunt-EJS-Static | Home",
+    "description": "Compile static html from ejs templates",
+    "keywords":  "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
   }
   
 }
