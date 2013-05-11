@@ -33,18 +33,36 @@ module.exports = function(grunt) {
         files: [
           {expand: true, cwd: 'example/dev/', src: ['img/**'], dest: 'example/preview/'},
           {expand: true, cwd: 'example/dev/', src: ['css/**'], dest: 'example/preview/'},
-          {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/preview/'},
-          {expand: true, cwd: 'example/dev/', src: ['.ht*'], dest: 'example/preview/'}
+          {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/preview/'}
+        ]
+      },
+      optimize: {
+        files: [
+          {expand: true, cwd: 'example/dev/', src: ['pages/**'], dest: 'example/production/'},
+          {expand: true, cwd: 'example/dev/', src: ['templates/**'], dest: 'example/production/'},
+          {expand: true, cwd: 'example/dev/', src: ['img/**'], dest: 'example/production/'},
+          {expand: true, cwd: 'example/dev/', src: ['css/**'], dest: 'example/production/'},
+          {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/production/'}
         ]
       }
     },
 
-    // Configuration to be run (and then tested).
     ejs_static: {
       preview: {
         options: {
-          src: 'example/dev/pages/',
+          src: 'example/dev/',
           dest: 'example/preview/',
+          index_page: 'example/dev/pages/home/index.html',
+          data: 'example/dev/data/pages.json'
+        },
+        files: {
+          'example/preview/': 'example/dev/pages/**/index.html'
+        },
+      },
+      optimize: {
+        options: {
+          src: 'example/production/',
+          dest: 'example/production/',
           index_page: 'example/dev/pages/home/index.html',
           data: 'example/dev/data/pages.json'
         },
@@ -70,28 +88,22 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  // Whenever the "test" task is run, first clean the "tmp" dir, then run this
-  // plugin's task(s), then test the result.
-  grunt.registerTask('test', [
-    'clean', 
-    'ejs_static'
-    // , 
-    // 'nodeunit'
-  ]);
-
-  // preview the site during development
+  // build the site for preview during development
   grunt.registerTask('preview', [
     'clean',
     'copy:preview', 
-    'ejs_static'
+    'ejs_static:preview'
     // , 
     // 'nodeunit'
   ]);
 
-  // By default, lint and run all tests.
-  grunt.registerTask('default', [
-    'jshint', 
-    'test'
+  // optimize the site before deploying to production
+  grunt.registerTask('optimize', [
+    'clean',
+    'copy:optimize', 
+    'ejs_static:optimize'
+    // , 
+    // 'nodeunit'
   ]);
 
 };

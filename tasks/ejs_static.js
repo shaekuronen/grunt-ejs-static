@@ -11,6 +11,7 @@
 module.exports = function(grunt) {
 
   var ejs = require('ejs');
+  var path = require('path');
 
   // Please see the Grunt documentation for more information regarding task
   // creation: http://gruntjs.com/creating-tasks
@@ -45,6 +46,8 @@ module.exports = function(grunt) {
         // get the parent directory of layout manager
         var the_parent_directory = get_parent_directory(filepath);
 
+        grunt.log.writeln(the_parent_directory);
+
         // get the path to the parent directory
         var the_path_to_rendered_template = get_path_to_rendered_template(filepath, options.src, options.dest);
 
@@ -56,8 +59,12 @@ module.exports = function(grunt) {
         // get the data using bracket notation so it's possible for the identifier to start with a number
         var this_data = the_data[the_parent_directory];
 
-        // TODO figure out why this filename option is necessary
-        this_data.filename = "some_filename";  
+        // TODO this seems all effed up see if can fix in visionmedia/ejs/lib/ejs.js so not so convoluted
+        // tj uses filename to determine the baseDir for includes
+        // seems like there should be a more straightforward way to do it
+        // see resolveInclude in visionmedia/ejs/lib/ejs.js
+        // i mean, even just calling it include_base_dir instead of filename would seem to make more sense
+        this_data.filename = options.src + "index.html";  
 
         // render the template as html
         var the_rendered_template = ejs.render(the_template, this_data);
@@ -83,8 +90,6 @@ module.exports = function(grunt) {
     // get the parent directory of layout manager 
     function get_parent_directory(path_to_file) {
 
-      grunt.log.writeln('get parent directory happened');
-
         var tokens = [];
 
         tokens = path_to_file.split('/');
@@ -94,6 +99,8 @@ module.exports = function(grunt) {
 
         var the_parent_directory = tokens.pop();
 
+        grunt.log.writeln('PARENT DIRECTORY IS ' + the_parent_directory);
+
         return the_parent_directory;
 
     }
@@ -102,11 +109,11 @@ module.exports = function(grunt) {
     // get the path to the rendered template
     function get_path_to_rendered_template(path_to_file, path_to_source, destination) {
 
+      // remove src (options.src) from beginning of path
       var path_to_rendered_template = path_to_file.replace(path_to_source, "");
 
-          path_to_rendered_template = destination + path_to_rendered_template;
-
-      grunt.log.writeln('the path to rendered template is ' + path_to_rendered_template);
+      // add destination (options.dest) to beginning of path
+      path_to_rendered_template = destination + path_to_rendered_template;
 
       return path_to_rendered_template;     
       
