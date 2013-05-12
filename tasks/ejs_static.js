@@ -59,7 +59,8 @@ module.exports = function(grunt) {
         // see resolveInclude() in visionmedia/ejs/lib/ejs.js
         // this sets the include relative to base dir defined in ejs_static options
         // vs setting the include relative to the file which is the default behavior in ejs.js
-        this_data.filename = options.src + "index.html";  
+        var includes_root_dir = path.dirname(options.src);
+        this_data.filename = includes_root_dir + "/index.html";    
 
         // render the template as html
         var the_rendered_template = ejs.render(the_template, this_data);

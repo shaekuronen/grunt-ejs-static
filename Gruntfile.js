@@ -79,7 +79,7 @@ module.exports = function(grunt) {
     ejs_static: {
       preview: {
         options: {
-          src: 'example/dev/',
+          src: 'example/dev/pages/',
           dest: 'example/preview/',
           index_page: 'example/dev/pages/home/index.html',
           data: 'example/dev/data/pages.json'
@@ -90,7 +90,7 @@ module.exports = function(grunt) {
       },
       optimize: {
         options: {
-          src: 'example/production/',
+          src: 'example/production/pages/',
           dest: 'example/production/',
           index_page: 'example/dev/pages/home/index.html',
           data: 'example/dev/data/pages.json'
