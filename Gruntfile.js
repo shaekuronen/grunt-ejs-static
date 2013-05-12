@@ -27,7 +27,12 @@ module.exports = function(grunt) {
     clean: {
       preview: ['example/preview'],
       optimize: ['example/production'],
-      post_optimize: ['example/production/pages', 'example/production/templates']
+      post_optimize: [
+        'example/production/pages', 
+        'example/production/templates',
+        'example/production/head.ejs',
+        'example/production/scripts.ejs'
+      ]
     },
 
     copy: {
@@ -40,13 +45,35 @@ module.exports = function(grunt) {
       },
       optimize: {
         files: [
+          // temporary files for usemin task
+          {expand: true, flatten: true, cwd: 'example/dev/', src: ['templates/global/head.ejs'], dest: 'example/production/', filter: 'isFile'},
+          {expand: true, flatten: true, cwd: 'example/dev/', src: ['templates/global/scripts.ejs'], dest: 'example/production/', filter: 'isFile'},
+          // end temporary files for usemin task
+          // temporary files for ejs_static task
           {expand: true, cwd: 'example/dev/', src: ['pages/**'], dest: 'example/production/'},
           {expand: true, cwd: 'example/dev/', src: ['templates/**'], dest: 'example/production/'},
+          // end temporary files for ejs_static task
           {expand: true, cwd: 'example/dev/', src: ['img/**'], dest: 'example/production/'},
           {expand: true, cwd: 'example/dev/', src: ['css/**'], dest: 'example/production/'},
           {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/production/'}
         ]
       }
+    },
+
+    // get the scripts inside preview:js block
+    'useminPrepare': {
+      html: [
+        'example/production/head.ejs',
+        'example/production/scripts.ejs'
+      ]     
+    },
+
+    // update the scripts links to point to the concatenated and minified js/main.js
+    usemin: {
+      html: [
+        'example/production/templates/global/head.ejs',
+        'example/production/templates/global/scripts.ejs'
+      ]
     },
 
     ejs_static: {
@@ -89,6 +116,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-usemin');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // build the site for preview during development
   grunt.registerTask('preview', [
@@ -102,7 +133,12 @@ module.exports = function(grunt) {
   // optimize the site before deploying to production
   grunt.registerTask('optimize', [
     'clean:optimize',
-    'copy:optimize', 
+    'copy:optimize',
+    'useminPrepare', 
+    'concat', 
+    'cssmin', 
+    'uglify',  
+    'usemin', 
     'ejs_static:optimize',
     'clean:post_optimize'
     // , 

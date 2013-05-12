@@ -26,7 +26,7 @@ module.exports = function(grunt) {
 
     var the_data = grunt.file.readJSON(options.data);
 
-    // iterate over all specified file groups
+    // iterate over all specified files
     this.files.forEach(function(f) {
 
       f.src.filter(function(filepath) {
@@ -41,12 +41,8 @@ module.exports = function(grunt) {
       })
       .forEach(function(filepath) {
 
-        grunt.log.writeln('the file path is ' + filepath);
-
         // get the parent directory of layout manager
         var the_parent_directory = get_parent_directory(filepath);
-
-        grunt.log.writeln(the_parent_directory);
 
         // get the path to the parent directory
         var the_path_to_rendered_template = get_path_to_rendered_template(filepath, options.src, options.dest);
@@ -54,16 +50,15 @@ module.exports = function(grunt) {
         // get the template
         var the_template = grunt.file.read(filepath);
 
-        grunt.log.writeln(the_template);
-
         // get the data using bracket notation so it's possible for the identifier to start with a number
         var this_data = the_data[the_parent_directory];
 
-        // TODO this seems all effed up see if can fix in visionmedia/ejs/lib/ejs.js so not so convoluted
-        // tj uses filename to determine the baseDir for includes
-        // seems like there should be a more straightforward way to do it
-        // see resolveInclude in visionmedia/ejs/lib/ejs.js
-        // i mean, even just calling it include_base_dir instead of filename would seem to make more sense
+        // set the base dir for includes
+        // tj uses filename to set base dir for includes in ejs.js
+        // which make the include relative to the file
+        // see resolveInclude() in visionmedia/ejs/lib/ejs.js
+        // this sets the include relative to base dir defined in ejs_static options
+        // vs setting the include relative to the file which is the default behavior in ejs.js
         this_data.filename = options.src + "index.html";  
 
         // render the template as html
@@ -85,7 +80,7 @@ module.exports = function(grunt) {
       });
 
     });
-    // end iterate over all specified file groups
+    // end iterate over all specified files
 
     // get the parent directory of layout manager 
     function get_parent_directory(path_to_file) {
@@ -98,8 +93,6 @@ module.exports = function(grunt) {
         var the_file = tokens.splice(-1, 2);
 
         var the_parent_directory = tokens.pop();
-
-        grunt.log.writeln('PARENT DIRECTORY IS ' + the_parent_directory);
 
         return the_parent_directory;
 
