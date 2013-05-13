@@ -27,9 +27,9 @@ module.exports = function(grunt) {
     var the_data = grunt.file.readJSON(options.data);
 
     // iterate over all specified files
-    this.files.forEach(function(f) {
+    this.files.forEach(function(file) {
 
-      f.src.filter(function(filepath) {
+      file.src.filter(function(filepath) {
 
         // Warn on and remove invalid source files (if nonull was set).
         if (!grunt.file.exists(filepath)) {
@@ -41,11 +41,14 @@ module.exports = function(grunt) {
       })
       .forEach(function(filepath) {
 
+        grunt.log.writeln(file.src);
+        grunt.log.writeln(file.dest);
+
         // get the parent directory of layout manager
         var the_parent_directory = get_parent_directory(filepath);
 
         // get the path to the parent directory
-        var the_path_to_rendered_template = get_path_to_rendered_template(filepath, options.src, options.dest);
+        var the_path_to_rendered_template = get_path_to_rendered_template(filepath, file.dest);
 
         // get the template
         var the_template = grunt.file.read(filepath);
@@ -53,14 +56,13 @@ module.exports = function(grunt) {
         // get the data using bracket notation so it's possible for the identifier to start with a number
         var this_data = the_data[the_parent_directory];
 
+        grunt.log.writeln('THIS DATA ' +  this_data);
+
         // set the base dir for includes
         // tj uses filename to set base dir for includes in ejs.js
         // which make the include relative to the file
         // see resolveInclude() in visionmedia/ejs/lib/ejs.js
-        // this sets the include relative to base dir defined in ejs_static options
-        // vs setting the include relative to the file which is the default behavior in ejs.js
-        var includes_root_dir = path.dirname(options.src);
-        this_data.filename = includes_root_dir + "/index.html";    
+        this_data.filename = filepath;    
 
         // render the template as html
         var the_rendered_template = ejs.render(the_template, this_data);
@@ -69,7 +71,7 @@ module.exports = function(grunt) {
         if (filepath === options.index_page) {
 
           // write the compiled template to the document root
-          grunt.file.write(options.dest + 'index.html', the_rendered_template);
+          grunt.file.write(file.dest + 'index.html', the_rendered_template);
 
         } else {
 
@@ -101,13 +103,26 @@ module.exports = function(grunt) {
     // end get the parent directory of layout manager
 
     // get the path to the rendered template
-    function get_path_to_rendered_template(path_to_file, path_to_source, destination) {
+    function get_path_to_rendered_template(path_to_file, destination) {
 
-      // remove src (options.src) from beginning of path
-      var path_to_rendered_template = path_to_file.replace(path_to_source, "");
+      var the_parent_directory = get_parent_directory(path_to_file);
 
-      // add destination (options.dest) to beginning of path
-      path_to_rendered_template = destination + path_to_rendered_template;
+      var path_to_rendered_template = destination + the_parent_directory + "/index.html";
+
+
+      // grunt.log.writeln('PATH TO FILE ' +  path_to_file);
+      // grunt.log.writeln('PATH TO SOURCE ' +  path_to_source);
+      // grunt.log.writeln('DESTINATION ' +  destination);
+
+      // // remove src (options.src) from beginning of path
+      // var path_to_rendered_template = path_to_file.replace(path_to_source, "");
+
+      // grunt.log.writeln('PATH TO RENDERED TEMPLATE ' +  path_to_rendered_template);
+
+      // // add destination (options.dest) to beginning of path
+      // path_to_rendered_template = destination + path_to_rendered_template;
+
+      grunt.log.writeln('PATH TO RENDERED TEMPLATE ' +  path_to_rendered_template);
 
       return path_to_rendered_template;     
       

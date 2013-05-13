@@ -55,7 +55,8 @@ module.exports = function(grunt) {
           // end temporary files for ejs_static task
           {expand: true, cwd: 'example/dev/', src: ['img/**'], dest: 'example/production/'},
           {expand: true, cwd: 'example/dev/', src: ['css/**'], dest: 'example/production/'},
-          {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/production/'}
+          {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/production/'},
+          {expand: true, cwd: 'example/dev/', src: ['data/**'], dest: 'example/production/'}
         ]
       }
     },
@@ -79,8 +80,7 @@ module.exports = function(grunt) {
     ejs_static: {
       preview: {
         options: {
-          src: 'example/dev/pages/',
-          dest: 'example/preview/',
+          src: 'example/dev/',
           index_page: 'example/dev/pages/home/index.html',
           data: 'example/dev/data/pages.json'
         },
@@ -90,13 +90,12 @@ module.exports = function(grunt) {
       },
       optimize: {
         options: {
-          src: 'example/production/pages/',
-          dest: 'example/production/',
-          index_page: 'example/dev/pages/home/index.html',
-          data: 'example/dev/data/pages.json'
+          src: 'example/production/',
+          index_page: 'example/production/pages/home/index.html',
+          data: 'example/production/data/pages.json'
         },
         files: {
-          'example/preview/': 'example/dev/pages/**/index.html'
+          'example/production/': 'example/production/pages/**/index.html'
         },
       }
     },
