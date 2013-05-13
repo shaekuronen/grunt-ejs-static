@@ -81,6 +81,7 @@ module.exports = function(grunt) {
       preview: {
         options: {
           src: 'example/dev/',
+          layout_src: 'example/dev/pages/',
           index_page: 'example/dev/pages/home/index.html',
           data: 'example/dev/data/pages.json'
         },
@@ -91,6 +92,7 @@ module.exports = function(grunt) {
       optimize: {
         options: {
           src: 'example/production/',
+          layout_src: 'example/production/pages/',
           index_page: 'example/production/pages/home/index.html',
           data: 'example/production/data/pages.json'
         },
