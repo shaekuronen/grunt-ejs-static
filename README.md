@@ -24,30 +24,30 @@ In your project's Gruntfile, add a section named `ejs_static` to the data object
 
 ```js
 grunt.initConfig({
-ejs_static: {
-  preview: {
-    options: {
-      src: 'example/dev/',
-      layout_src: 'example/dev/pages/',
-      index_page: 'example/dev/pages/home/index.html',
-      data: 'example/dev/data/pages.json'
+  ejs_static: {
+    preview: {
+      options: {
+        src: 'example/dev/',
+        layout_src: 'example/dev/pages/',
+        index_page: 'example/dev/pages/home/index.html',
+        data: 'example/dev/data/pages.json'
+      },
+      files: {
+        'example/preview/': 'example/dev/pages/**/index.html'
+      },
     },
-    files: {
-      'example/preview/': 'example/dev/pages/**/index.html'
-    },
-  },
-  optimize: {
-    options: {
-      src: 'example/production/',
-      layout_src: 'example/production/pages/',
-      index_page: 'example/production/pages/home/index.html',
-      data: 'example/production/data/pages.json'
-    },
-    files: {
-      'example/production/': 'example/production/pages/**/index.html'
-    },
+    optimize: {
+      options: {
+        src: 'example/production/',
+        layout_src: 'example/production/pages/',
+        index_page: 'example/production/pages/home/index.html',
+        data: 'example/production/data/pages.json'
+      },
+      files: {
+        'example/production/': 'example/production/pages/**/index.html'
+      },
+    }
   }
-}
 })
 ```
 
@@ -88,8 +88,11 @@ The files to be iterated through to find layout managers.  Can use globbing. (ex
 ### Usage Examples
 
 To demo how grunt-ejs-static works
+
 -- git clone https://github.com/shaekuronen/grunt-ejs-static.git
+
 -- cd grunt-ejs-static
+
 -- grunt preview
 
 This builds the static html into example/preview/ using EJS from layout manager files in example/dev/pages/
