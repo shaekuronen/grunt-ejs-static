@@ -24,63 +24,77 @@ In your project's Gruntfile, add a section named `ejs_static` to the data object
 
 ```js
 grunt.initConfig({
-  ejs_static: {
+ejs_static: {
+  preview: {
     options: {
-      // Task-specific options go here.
+      src: 'example/dev/',
+      layout_src: 'example/dev/pages/',
+      index_page: 'example/dev/pages/home/index.html',
+      data: 'example/dev/data/pages.json'
     },
-    your_target: {
-      // Target-specific file lists and/or options go here.
+    files: {
+      'example/preview/': 'example/dev/pages/**/index.html'
     },
   },
+  optimize: {
+    options: {
+      src: 'example/production/',
+      layout_src: 'example/production/pages/',
+      index_page: 'example/production/pages/home/index.html',
+      data: 'example/production/data/pages.json'
+    },
+    files: {
+      'example/production/': 'example/production/pages/**/index.html'
+    },
+  }
+}
 })
 ```
 
 ### Options
 
-#### options.separator
+#### options.src
 Type: `String`
-Default value: `',  '`
 
-A string value that is used to do something with whatever.
+This is the development directory (example/dev/)
 
-#### options.punctuation
+#### options.layout_src
 Type: `String`
-Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+The directory where layout manager files are located (index.html files in example/dev/pages/)
+
+#### options.index_page
+Type: `String`
+
+This sets the index page for the site (example/dev/pages/home/index.html)
+
+#### options.data
+Type: `String`
+
+The json data to populate EJS templates
+
+### Files
+
+#### files.dest
+Type: `String`
+
+Sets the destination directory that static html is built into (example/preview/)
+
+#### files.src
+Type: `String`
+
+The files to be iterated through to find layout managers.  Can use globbing. (example/dev/pages/**/index.html)
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+To demo how grunt-ejs-static works
+-- git clone https://github.com/shaekuronen/grunt-ejs-static.git
+-- cd grunt-ejs-static
+-- grunt preview
 
-```js
-grunt.initConfig({
-  ejs_static: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
+This builds the static html into example/preview/ using EJS from layout manager files in example/dev/pages/
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  ejs_static: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-})
-```
+To demo optimizing the site for deployment to production, run "grunt optimize" from command line.  This builds static html into example/production/ 
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
