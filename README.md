@@ -95,7 +95,7 @@ To demo how grunt-ejs-static works
 
 -- grunt preview
 
-This builds the static html into example/preview/ using EJS from layout manager files in example/dev/pages/
+This builds EJS templates as html into example/preview/ from layout manager files in example/dev/pages/ (see example/dev/pages/home/index.html for example of layout using EJS includes)
 
 To demo optimizing the site for deployment to production
 
