@@ -97,7 +97,11 @@ To demo how grunt-ejs-static works
 
 This builds the static html into example/preview/ using EJS from layout manager files in example/dev/pages/
 
-To demo optimizing the site for deployment to production, run "grunt optimize" from command line.  This builds static html into example/production/ 
+To demo optimizing the site for deployment to production
+
+-- grunt optimize
+
+This builds static html into example/production/ 
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
