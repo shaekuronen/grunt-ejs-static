@@ -89,17 +89,21 @@ The files to be iterated through to find layout managers.  Can use globbing. (ex
 
 To demo how grunt-ejs-static works
 
--- git clone https://github.com/shaekuronen/grunt-ejs-static.git
+```shell
+git clone https://github.com/shaekuronen/grunt-ejs-static.git
 
--- cd grunt-ejs-static
+cd grunt-ejs-static
 
--- grunt preview
+grunt preview
+```
 
 This builds EJS templates as html into example/preview/ from layout manager files in example/dev/pages/ (see example/dev/pages/home/index.html for example of layout using EJS includes)
 
 To demo optimizing the site for deployment to production
 
--- grunt optimize
+```shell
+grunt optimize
+```
 
 This builds static html into example/production/ 
 

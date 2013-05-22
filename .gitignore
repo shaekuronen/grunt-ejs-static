@@ -1,5 +1,5 @@
-node_modules
-npm-debug.log
+node_modules/
+*.log
 .DS_Store
-dev_BAK
-production_BAK
+example/preview/
+example/production/
