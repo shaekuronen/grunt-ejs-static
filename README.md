@@ -2,6 +2,10 @@
 
 > Compile static html from ejs templates
 
+> The plugin includes a basic example
+
+> For a more full-featured example, see [Spandex](https://github.com/shaekuronen/spandex)
+
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
 
