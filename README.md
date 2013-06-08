@@ -4,7 +4,7 @@ Compile static html from ejs templates
 
 This plugin includes a basic example
 
-For a static site generator &#8212; as a grunt-init template &#8212; utilizing grunt-ejs-static, see [Spandex](https://github.com/shaekuronen/spandex)
+For a static site generator &#8212; built as a grunt-init template &#8212; utilizing grunt-ejs-static, see [Spandex](https://github.com/shaekuronen/spandex)
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
