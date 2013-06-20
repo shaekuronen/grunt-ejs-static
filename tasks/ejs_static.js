@@ -64,6 +64,13 @@ module.exports = function(grunt) {
 			grunt.log.error('Could not find model for ' + the_parent_directory + ' in data json');
 		}
 
+		// Pull in any site-wide variables like the name of the site or Google Analytics id.
+		var global_data = the_data[''];
+		if (global_data) {
+			this_data.global = global_data;
+			grunt.log.debug('Added global data to model object');
+		};
+
         // set the base dir for includes
         // tj uses filename to set base dir for includes in ejs.js
         // which make the include relative to the file
