@@ -69,7 +69,7 @@ module.exports = function(grunt) {
 		if (global_data) {
 			this_data.global = global_data;
 			grunt.log.debug('Added global data to model object');
-		};
+		}
 
         // set the base dir for includes
         // tj uses filename to set base dir for includes in ejs.js
