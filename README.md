@@ -75,7 +75,7 @@ This sets the index page for the site (example/dev/pages/home/index.html)
 #### options.data
 Type: `String`
 
-The json data to populate EJS templates. The parent directory of a layout manager is used as the key into the JSON file and is case-sensitive.
+The json data to populate EJS templates. The parent directory of a layout manager is used as the key into the JSON file and is case-sensitive. There must be an entry in the json data for each layout manager.
 
 The JSON element with the empty string as its name is injected into all the other objects as the `global` property.
 
