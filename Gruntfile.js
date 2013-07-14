@@ -25,38 +25,38 @@ module.exports = function(grunt) {
 
     // Before generating any new files, remove any previously-created files.
     clean: {
-      preview: ['example/preview'],
-      optimize: ['example/production'],
+      preview: ['demo/preview'],
+      optimize: ['demo/production'],
       post_optimize: [
-        'example/production/pages', 
-        'example/production/templates',
-        'example/production/head.ejs',
-        'example/production/scripts.ejs'
+        'demo/production/pages', 
+        'demo/production/templates',
+        'demo/production/head.ejs',
+        'demo/production/scripts.ejs'
       ]
     },
 
     copy: {
       preview: {
         files: [
-          {expand: true, cwd: 'example/dev/', src: ['img/**'], dest: 'example/preview/'},
-          {expand: true, cwd: 'example/dev/', src: ['css/**'], dest: 'example/preview/'},
-          {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/preview/'}
+          {expand: true, cwd: 'demo/dev/', src: ['img/**'], dest: 'demo/preview/'},
+          {expand: true, cwd: 'demo/dev/', src: ['css/**'], dest: 'demo/preview/'},
+          {expand: true, cwd: 'demo/dev/', src: ['js/**'], dest: 'demo/preview/'}
         ]
       },
       optimize: {
         files: [
           // temporary files for usemin task
-          {expand: true, flatten: true, cwd: 'example/dev/', src: ['templates/global/head.ejs'], dest: 'example/production/', filter: 'isFile'},
-          {expand: true, flatten: true, cwd: 'example/dev/', src: ['templates/global/scripts.ejs'], dest: 'example/production/', filter: 'isFile'},
+          {expand: true, flatten: true, cwd: 'demo/dev/', src: ['templates/global/head.ejs'], dest: 'demo/production/', filter: 'isFile'},
+          {expand: true, flatten: true, cwd: 'demo/dev/', src: ['templates/global/scripts.ejs'], dest: 'demo/production/', filter: 'isFile'},
           // end temporary files for usemin task
           // temporary files for ejs_static task
-          {expand: true, cwd: 'example/dev/', src: ['pages/**'], dest: 'example/production/'},
-          {expand: true, cwd: 'example/dev/', src: ['templates/**'], dest: 'example/production/'},
+          {expand: true, cwd: 'demo/dev/', src: ['pages/**'], dest: 'demo/production/'},
+          {expand: true, cwd: 'demo/dev/', src: ['templates/**'], dest: 'demo/production/'},
           // end temporary files for ejs_static task
-          {expand: true, cwd: 'example/dev/', src: ['img/**'], dest: 'example/production/'},
-          {expand: true, cwd: 'example/dev/', src: ['css/**'], dest: 'example/production/'},
-          {expand: true, cwd: 'example/dev/', src: ['js/**'], dest: 'example/production/'},
-          {expand: true, cwd: 'example/dev/', src: ['data/**'], dest: 'example/production/'}
+          {expand: true, cwd: 'demo/dev/', src: ['img/**'], dest: 'demo/production/'},
+          {expand: true, cwd: 'demo/dev/', src: ['css/**'], dest: 'demo/production/'},
+          {expand: true, cwd: 'demo/dev/', src: ['js/**'], dest: 'demo/production/'},
+          {expand: true, cwd: 'demo/dev/', src: ['data/**'], dest: 'demo/production/'}
         ]
       }
     },
@@ -64,41 +64,45 @@ module.exports = function(grunt) {
     // get the scripts inside preview:js block
     'useminPrepare': {
       html: [
-        'example/production/head.ejs',
-        'example/production/scripts.ejs'
+        'demo/production/head.ejs',
+        'demo/production/scripts.ejs'
       ]     
     },
 
     // update the scripts links to point to the concatenated and minified js/main.js
     usemin: {
       html: [
-        'example/production/templates/global/head.ejs',
-        'example/production/templates/global/scripts.ejs'
+        'demo/production/templates/global/head.ejs',
+        'demo/production/templates/global/scripts.ejs'
       ]
     },
 
     ejs_static: {
       preview: {
         options: {
-          src: 'example/dev/',
-          layout_src: 'example/dev/pages/',
-          index_page: 'example/dev/pages/home/index.html',
-          data: 'example/dev/data/pages.json'
-        },
-        files: {
-          'example/preview/': 'example/dev/pages/**/index.html'
-        },
+          dest: 'preview',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: true,
+          file_extension: '.html',
+          global_data: 'global',
+          path_separator: '/'
+        }
       },
       optimize: {
         options: {
-          src: 'example/production/',
-          layout_src: 'example/production/pages/',
-          index_page: 'example/production/pages/home/index.html',
-          data: 'example/production/data/pages.json'
-        },
-        files: {
-          'example/production/': 'example/production/pages/**/index.html'
-        },
+          dest: 'production',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: true,
+          file_extension: '.html',
+          global_data: 'global',
+          path_separator: '/'
+        }
       }
     },
 

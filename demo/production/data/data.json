@@ -1,0 +1,60 @@
+{
+  "global": {
+    "site_name": "Grunt-EJS-Static Example",
+    "analytics_id": "XOXOXO"
+  },
+  
+  "home": {
+    "meta": {
+      "title": "Home",
+      "description": "Compile static html from ejs templates",
+      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+    }
+  },
+
+  "about": {
+    "meta": {
+      "title": "About",
+      "description": "Compile static html from ejs templates",
+      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+    }
+  },
+
+  "work": {
+    "path_to_layout": "demo/dev/layouts/work.ejs",
+    "meta": {
+      "title": "Work",
+      "description": "Compile static html from ejs templates",
+      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+    }
+  },
+
+  "contact": {
+    "meta": {
+      "title": "Contact",
+      "description": "Compile static html from ejs templates",
+      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+    }
+  },
+
+  "flexbox": {
+    "category": "lab",
+    "path_to_layout": "demo/dev/layouts/experiment.ejs",
+    "meta": {
+      "title": "Flexible Box Model",
+      "description": "Future Proof Flexbox",
+      "keywords": ""
+    }
+  },
+
+  "project_name": {
+    "category": "project",
+    "path_to_layout": "demo/dev/layouts/project.ejs",
+    "meta": {
+      "title": "Responsive Design Project",
+      "description": "Some description here",
+      "keywords": ""
+    }
+  }
+  
+}
