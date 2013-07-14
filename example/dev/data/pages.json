@@ -1,9 +1,13 @@
 {
-
+  "": {
+    "site_name": "Grunt-EJS-Static Example",
+	"analytics_id": "UA-XXXXXX"
+  },
+  
   "home": {
     "page_name": "home",
     "page_category": "page",
-    "title": "Grunt-EJS-Static | Home",
+    "title": "Home",
     "description": "Compile static html from ejs templates",
     "keywords":  "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
   },
@@ -11,7 +15,7 @@
   "about": {
     "page_name": "about",
     "page_category": "page",
-    "title": "Grunt-EJS-Static | About",
+    "title": "About",
     "description": "Compile static html from ejs templates",
     "keywords":  "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
   }

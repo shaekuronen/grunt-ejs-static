@@ -2,9 +2,9 @@
 
 Compile static html from ejs templates
 
-The plugin includes a basic example
+This plugin includes a basic example
 
-For a more full-featured example, see [Spandex](https://github.com/shaekuronen/spandex)
+For a static site generator &#8212; built as a grunt-init template &#8212; utilizing grunt-ejs-static, see [Spandex](https://github.com/shaekuronen/spandex)
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -75,7 +75,9 @@ This sets the index page for the site (example/dev/pages/home/index.html)
 #### options.data
 Type: `String`
 
-The json data to populate EJS templates
+The json data to populate EJS templates. The parent directory of a layout manager is used as the key into the JSON file and is case-sensitive. There must be an entry in the json data for each layout manager.
+
+The JSON element with the empty string as its name is injected into all the other objects as the `global` property.
 
 ### Files
 
@@ -115,4 +117,6 @@ This builds static html into example/production/
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+### 0.2.0 
+* Added a way to get site-wide variables into the models for individual layouts.
+* Added logging of debugging information to show what is happening in the task.

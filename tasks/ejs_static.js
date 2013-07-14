@@ -41,23 +41,43 @@ module.exports = function(grunt) {
       })
       .forEach(function(filepath) {
 
+		    grunt.log.debug('Processing layout manager at filepath ' + filepath);
+
         // get the parent directory of layout manager
         var the_parent_directory = get_parent_directory(filepath);
+		    grunt.log.debug('Looking in parent directory ' + the_parent_directory);
 
         // get the path to the parent directory
         var the_path_to_rendered_template = get_path_to_rendered_template(filepath, options.layout_src, file.dest);
+		    grunt.log.debug('Using path ' + the_path_to_rendered_template + ' to read layout manager file.');
 
         // get the template
         var the_template = grunt.file.read(filepath);
+		    grunt.log.debug('Read template from ' + filepath);
 
         // get the data using bracket notation so it's possible for the identifier to start with a number
         var this_data = the_data[the_parent_directory];
+
+		    if (this_data) {
+			   grunt.log.debug('Retrieved model object from data json');
+		    }
+		    else {
+          grunt.log.error('Could not find model for ' + the_parent_directory + ' in data json');
+		    }
+
+		    // Pull in any site-wide variables like the name of the site or Google Analytics id.
+		    var global_data = the_data[''];
+
+		    if (global_data) {
+          this_data.global = global_data;
+          grunt.log.debug('Added global data to model object');
+		    }
 
         // set the base dir for includes
         // tj uses filename to set base dir for includes in ejs.js
         // which make the include relative to the file
         // see resolveInclude() in visionmedia/ejs/lib/ejs.js
-        this_data.filename = filepath;    
+        this_data.filename = filepath;
 
         // render the template as html
         var the_rendered_template = ejs.render(the_template, this_data);
@@ -67,12 +87,14 @@ module.exports = function(grunt) {
 
           // write the compiled template to the document root
           grunt.file.write(file.dest + 'index.html', the_rendered_template);
+          grunt.log.debug('Wrote site index file to ' + file.dest + 'index.html');
 
         } else {
 
           // write the compiled template to the destination directory
           grunt.file.write(the_path_to_rendered_template, the_rendered_template);
-
+          grunt.log.debug('Wrote result to ' + the_path_to_rendered_template);
+          
         }
 
       });
