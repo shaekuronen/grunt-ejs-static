@@ -2,9 +2,9 @@
 
 Compile static html from ejs templates
 
-This plugin includes a basic example
+Files to render are defined in a JSON file.  Layout is defined using EJS includes
 
-For a static site generator &#8212; built as a grunt-init template &#8212; utilizing grunt-ejs-static, see [Spandex](https://github.com/shaekuronen/spandex)
+Plugin includes a basic demo in demo/
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -26,70 +26,99 @@ grunt.loadNpmTasks('grunt-ejs-static');
 ### Overview
 In your project's Gruntfile, add a section named `ejs_static` to the data object passed into `grunt.initConfig()`.
 
+The required options are dest and path_to_data.
+
+Conditionally required options are path_to_layouts.  
+
+If layout paths are specified in data.json (recommended), not necessary.  If layout paths are not specified, ejs_static falls back to searching the dir specified by path_to_layouts.
+
+If there is global data in the data.json file, then global_data option necessary.  If no global data, not necessary.     
+
 ```js
 grunt.initConfig({
-  ejs_static: {
-    preview: {
-      options: {
-        src: 'example/dev/',
-        layout_src: 'example/dev/pages/',
-        index_page: 'example/dev/pages/home/index.html',
-        data: 'example/dev/data/pages.json'
+
+    ejs_static: {
+      preview: {
+        options: {
+          dest: 'preview',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          global_data: 'global'
+        }
       },
-      files: {
-        'example/preview/': 'example/dev/pages/**/index.html'
-      },
+      optimize: {
+        options: {
+          dest: 'production',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          global_data: 'global'
+        }
+      }
     },
-    optimize: {
-      options: {
-        src: 'example/production/',
-        layout_src: 'example/production/pages/',
-        index_page: 'example/production/pages/home/index.html',
-        data: 'example/production/data/pages.json'
-      },
-      files: {
-        'example/production/': 'example/production/pages/**/index.html'
-      },
-    }
-  }
+
 })
 ```
 
 ### Options
 
-#### options.src
+#### options.dest 
+Required
 Type: `String`
 
-This is the development directory (example/dev/)
+Files are rendered into this directory
 
-#### options.layout_src
+#### options.path_to_data
+Required
 Type: `String`
 
-The directory where layout manager files are located (index.html files in example/dev/pages/)
+This is the path to the JSON file that determines what files are rendered
+
+#### options.path_to_layouts
+Optional
+Type: `String`
+
+This is the path to the layout files directory 
+
+#### options.global_data
+Optional
+Type: `String`
+
+Global data can be included.  To include, add into data.json   
 
 #### options.index_page
+Optional
 Type: `String`
 
-This sets the index page for the site (example/dev/pages/home/index.html)
+This sets the index page for the site 
 
-#### options.data
+#### options.parent_dirs
+Optional
+Type: `Boolean`
+
+This defines how files are output.
+
+If true, files are output as <key>.html (for example, about.html)
+
+If false, files are output as <key>/index.html (for example, about/index.html)
+
+#### options.underscores_to_dashes
+Optional
+Type: `Boolean`
+
+Filenames are defined in data.json as the key
+
+If true, any underscores in the key are converted to dashes
+
+If false, underscores are not converted
+
+#### options.file_extension
+Optional
 Type: `String`
 
-The json data to populate EJS templates. The parent directory of a layout manager is used as the key into the JSON file and is case-sensitive. There must be an entry in the json data for each layout manager.
+This defines the file extension of rendered files  
 
-The JSON element with the empty string as its name is injected into all the other objects as the `global` property.
+Defaults to .html, but could be .php, .py, etc 
 
-### Files
-
-#### files.dest
-Type: `String`
-
-Sets the destination directory that static html is built into (example/preview/)
-
-#### files.src
-Type: `String`
-
-The files to be iterated through to find layout managers.  Can use globbing. (example/dev/pages/**/index.html)
 
 ### Usage Examples
 
@@ -117,6 +146,12 @@ This builds static html into example/production/
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
-### 0.2.0 
+### 0.3.0 
+* Complete rewrite.  More flexible, less opinionated.
+* Now data-driven, files to be rendered are defined in json file, not in the file structure
+* Backwards compatible, though ejs_static options need to be updated in Gruntfile
+* Adds options: parent_dirs, underscores_to_dashes, file_extension, global_data
+
+### 0.2.0
 * Added a way to get site-wide variables into the models for individual layouts.
 * Added logging of debugging information to show what is happening in the task.
