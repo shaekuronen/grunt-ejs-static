@@ -2,7 +2,7 @@
 
 Compile static html from ejs templates
 
-Files to render are defined in a JSON file.  Layout is defined using EJS includes
+Files to render are defined in JSON.  Layout is defined using EJS Includes.
 
 Plugin includes a basic demo in demo/
 
@@ -117,7 +117,7 @@ Type: `String`
 
 This defines the file extension of rendered files  
 
-Defaults to .html, but could be .php, .py, etc 
+Defaults to .html, but could be .php, .aspx, etc 
 
 
 ### Usage Examples

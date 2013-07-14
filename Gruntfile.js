@@ -80,9 +80,9 @@ module.exports = function(grunt) {
     ejs_static: {
       preview: {
         options: {
-          dest: 'preview',
+          dest: 'demo/preview',
           path_to_data: 'demo/dev/data/data.json',
-          path_to_layouts: 'demo/dev/layouts',
+          path_to_layouts: 'demo/dev/layouts/',
           global_data: 'global'
           // index_page: 'home',
           // parent_dirs: false,
@@ -93,7 +93,7 @@ module.exports = function(grunt) {
       },
       optimize: {
         options: {
-          dest: 'production',
+          dest: 'demo/production',
           path_to_data: 'demo/dev/data/data.json',
           path_to_layouts: 'demo/dev/layouts',
           index_page: 'home',
