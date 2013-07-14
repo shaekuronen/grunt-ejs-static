@@ -132,7 +132,7 @@ cd grunt-ejs-static
 grunt preview
 ```
 
-This builds EJS templates as html into example/preview/ from layout manager files in example/dev/pages/ (see example/dev/pages/home/index.html for example of layout using EJS includes)
+This builds EJS templates as html into demo/preview/ from layout files in demo/dev/pages/ (see demo/dev/pages/home/index.html for an example of layout using EJS includes)
 
 To demo optimizing the site for deployment to production
 
@@ -140,7 +140,7 @@ To demo optimizing the site for deployment to production
 grunt optimize
 ```
 
-This builds static html into example/production/ 
+This builds static html into demo/production/ 
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
@@ -148,7 +148,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Release History
 ### 0.3.0 
 * Complete rewrite.  More flexible, less opinionated.
-* Now data-driven, files to be rendered are defined in json file, not in the file structure
+* Now data-driven. Files to be rendered are defined in JSON file, not in the file structure
 * Backwards compatible, though ejs_static options need to be updated in Gruntfile
 * Adds options: parent_dirs, underscores_to_dashes, file_extension, global_data
 
