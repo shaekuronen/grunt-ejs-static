@@ -83,7 +83,7 @@ This is the path to the layout files directory
 Optional
 Type: `String`
 
-Global data can be included.  To include, add into data.json   
+Global data can be included.  To include, add into data.json and specify that key as options.global_data   
 
 #### options.index_page
 Optional
@@ -97,9 +97,9 @@ Type: `Boolean`
 
 This defines how files are output.
 
-If true, files are output as <key>.html (for example, about.html)
+If true, files are output as filename.html (for example, about.html)
 
-If false, files are output as <key>/index.html (for example, about/index.html)
+If false, files are output as filename/index.html (for example, about/index.html)
 
 #### options.underscores_to_dashes
 Optional
