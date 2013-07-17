@@ -132,7 +132,7 @@ cd grunt-ejs-static
 grunt preview
 ```
 
-This builds EJS templates as html into demo/preview/ from layout files in demo/dev/pages/ (see demo/dev/pages/home/index.html for an example of layout using EJS includes)
+This builds EJS templates as html into demo/preview/ from layout files in demo/dev/layouts/ (see demo/dev/layouts/home.ejs for an example of layout using EJS includes)
 
 To demo optimizing the site for deployment to production
 
