@@ -1,8 +1,4 @@
 {
-  "global": {
-    "site_name": "Grunt-EJS-Static Example",
-    "analytics_id": "XOXOXO"
-  },
   
   "home": {
     "meta": {
