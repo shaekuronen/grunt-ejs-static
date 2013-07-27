@@ -1,6 +1,6 @@
 # grunt-ejs-static
 
-Grunt EJS Static is an MVC approach to building a static site generator using EJS and Grunt.  Models are defined in multiple JSON files, which helps keep logic out of the templates and makes the data more maintainable.  Views are defined in layout files, which are top-level templates utilizing EJS Includes to manage templates.  The controller is a JSON file (such as routes.json) which defines files to render, as well as each file's layout and data.   
+Grunt EJS Static is an MVC approach to building a static site generator using EJS and Grunt.  Models can be defined in multiple JSON files, which helps keep logic out of the templates and makes the data more maintainable.  Views are defined in layout files, which are top-level templates utilizing EJS Includes to manage layout of templates.  The controller is a JSON file (such as routes.json) which defines files to render, as well as each file's layout and data.   
 
 For examples, please see demo/
 
