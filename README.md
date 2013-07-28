@@ -86,9 +86,11 @@ Additional data 1 in `global.json`
 Additional data 2 in `meta.json`
 ```json
 {
+  "home": {
     "title": "Grunt EJS Static | Home",
     "description": "The demo page for Grunt EJS Static",
     "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+  }
 }
 ```
 Generates this JSON data model 
