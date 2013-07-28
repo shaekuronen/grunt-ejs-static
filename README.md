@@ -63,6 +63,159 @@ grunt.initConfig({
 })
 ```
 
+### Usage
+Files to render in `routes.json` (this is options.path_to_data in Gruntfile)
+```json
+{
+  "home": {
+    "path_to_layout": "dev/layouts/home.ejs",
+    "path_to_data": [
+      "dev/data/global.json",
+      {"dev/data/meta.json": "home"}
+    ]
+  }
+}
+```
+Additional data 1 in `global.json`
+```json
+{
+  "site_name": "Grunt EJS Static",
+  "google_analytics": "XOXOXO"
+}
+```
+Additional data 2 in `meta.json`
+```json
+{
+    "title": "Grunt EJS Static | Home",
+    "description": "The demo page for Grunt EJS Static",
+    "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+}
+```
+Generates this JSON data model 
+```json
+{
+  "home": {
+    "global": {
+      "site_name": "Grunt EJS Static",
+      "google_analytics": "XOXOXO"
+    },
+    "meta": {
+      "title": "Home",
+      "description": "The demo page for Grunt EJS Static",
+      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+    }
+  }
+}
+```
+Layout defined in `home.ejs`
+```ejs
+<% include ../templates/global/head %>
+
+<% include ../templates/global/header %>
+
+<% include ../templates/home/hero %>
+
+<% include ../templates/home/body %>
+
+<% include ../templates/global/footer %>
+```
+Which includes templates like `head.ejs`
+```html
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title><%= global.site_name %> | <%= meta.title %></title>
+    <meta name="<%= meta.description %>" content="">
+    <meta name="<%= meta.keywords %>" content="" >
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- end css -->
+
+    <!-- modernizr -->
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <!-- end modernizr -->
+
+    <!-- google analytics -->
+    <script>
+      var _gaq=[['_setAccount','<%= global.google_analytics %>'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+    <!-- end google analytics -->
+
+  </head>
+```
+
+Outputs this HTML
+```html
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Grunt EJS Static | Home</title>
+    <meta name="The demo page for Grunt EJS Static" content="">
+    <meta name="gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js" content="" >
+
+    <!-- css -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- end css -->
+
+    <!-- modernizr -->
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+    <!-- end modernizr -->
+
+    <!-- google analytics -->
+    <script>
+      var _gaq=[['_setAccount','XOXOXO'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+    <!-- end google analytics -->
+
+  </head>
+
+
+  <body>
+
+    <!-- hero here -->
+
+    <!-- body content here -->
+
+  <!-- footer -->
+  <div class="container">
+      
+    <footer>
+        <p>&copy; Company 2012</p>
+    </footer>
+
+  </div>
+  <!-- end footer -->
+
+  <script src="js/main.js"></script>
+
+  </body>
+</html>
+```
+
+
 ### Options
 
 #### options.dest 
@@ -118,7 +271,7 @@ This defines the file extension of rendered files
 Defaults to .html, but could be .php, .aspx, etc 
 
 
-### Usage Examples
+### Examples
 
 To demo how grunt-ejs-static works
 
