@@ -116,7 +116,7 @@ Generates this JSON data model
 }
 ```
 Layout defined in `home.ejs`
-```ejs
+```js
 <% include ../templates/global/head %>
 
 <% include ../templates/global/header %>
