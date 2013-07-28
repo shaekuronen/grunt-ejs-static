@@ -82,14 +82,14 @@ Files to render in `routes.json` (this is options.path_to_data in Gruntfile)
   }
 }
 ```
-Additional data 1 in `global.json`
+Additional data from `global.json`
 ```json
 {
   "site_name": "Grunt EJS Static",
   "google_analytics": "XOXOXO"
 }
 ```
-Additional data 2 in `meta.json`
+Additional data from `meta.json`
 ```json
 {
   "home": {
@@ -102,16 +102,14 @@ Additional data 2 in `meta.json`
 Generates this JSON data model 
 ```json
 {
-  "home": {
-    "global": {
-      "site_name": "Grunt EJS Static",
-      "google_analytics": "XOXOXO"
-    },
-    "meta": {
-      "title": "Home",
-      "description": "The demo page for Grunt EJS Static",
-      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
-    }
+  "global": {
+    "site_name": "Grunt EJS Static",
+    "google_analytics": "XOXOXO"
+  },
+  "meta": {
+    "title": "Home",
+    "description": "The demo page for Grunt EJS Static",
+    "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
   }
 }
 ```
