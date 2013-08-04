@@ -54,5 +54,8 @@
     "templating engine",
     "template",
     "embedded js"
-  ]
+  ],
+  "scripts": {
+    "test": "grunt test"
+  }
 }
