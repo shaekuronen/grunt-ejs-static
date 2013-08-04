@@ -1,18 +1,27 @@
 
 <!-- case 1 -->
 <% if (file_name === 'contact') { %>
-<% include ../contact/body %>
+  <% include ../contact/body %>
+  <% file_name = false; %>
 <% } %>
 <!-- end case 1 -->
 
 <!-- case 2 -->
-<% if (file_name === 'case2') { %>
-<% include ../variable_content/content2 %>
+<% if (file_name === 'about') { %>
+  <% include ../about/body %>
+  <% file_name = false; %>
 <% } %>
 <!-- end case 2 -->
 
-<!-- case 3 -->
-<% if (file_name === 'about') { %>
-<% include ../about/body %>
+<!-- default case -->
+<% if (file_name) { %>
+  <% include ../variable_content/default_content %>
 <% } %>
-<!-- end case 3 -->
+<!-- end default case -->
+
+
+
+
+
+
+

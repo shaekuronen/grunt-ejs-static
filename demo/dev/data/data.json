@@ -18,7 +18,7 @@
   },
 
   "work": {
-    "path_to_layout": "demo/dev/layouts/work.ejs",
+    "path_to_layout": "demo/dev/layouts/default.ejs",
     "meta": {
       "title": "Work",
       "description": "Compile static html from ejs templates",
