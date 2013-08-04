@@ -161,7 +161,6 @@ module.exports = function(grunt) {
 
     // Unit tests.
     nodeunit: {
-      // tests: ['test/*_test.js'],
       tests: ['test/ejs_static_test.js'],
     },
 
@@ -185,8 +184,6 @@ module.exports = function(grunt) {
     'clean:preview',
     'copy:preview',
     'ejs_static:preview'
-    // ,
-    // 'nodeunit'
   ]);
 
   // optimize the site before deploying to production
@@ -200,8 +197,6 @@ module.exports = function(grunt) {
     'usemin',
     'ejs_static:optimize',
     'clean:post_optimize'
-    // ,
-    // 'nodeunit'
   ]);
 
   // test
