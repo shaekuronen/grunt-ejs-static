@@ -1,5 +1,5 @@
 {
-  
+
   "home": {
     "meta": {
       "title": "Home",
@@ -9,6 +9,7 @@
   },
 
   "about": {
+    "path_to_layout": "demo/dev/layouts/default.ejs",
     "meta": {
       "title": "About",
       "description": "Compile static html from ejs templates",
@@ -26,6 +27,7 @@
   },
 
   "contact": {
+    "path_to_layout": "demo/dev/layouts/default.ejs",
     "meta": {
       "title": "Contact",
       "description": "Compile static html from ejs templates",
@@ -52,5 +54,5 @@
       "keywords": ""
     }
   }
-  
+
 }
