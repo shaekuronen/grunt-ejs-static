@@ -1,27 +1,28 @@
 
-<!-- case 1 -->
-<% if (file_name === 'contact') { %>
-  <% include ../contact/body %>
-  <% file_name = false; %>
-<% } %>
-<!-- end case 1 -->
+<% // anonymous function -%>
+<% // assign file_name to a local variable inside anonymous to avoid creating global variables -%>
+<% // local variable used to avoid globally overwriting file_name inside if statements -%>
+<% (function() { var local_file_name = file_name; -%>
 
-<!-- case 2 -->
-<% if (file_name === 'about') { %>
-  <% include ../about/body %>
-  <% file_name = false; %>
-<% } %>
-<!-- end case 2 -->
+<% // case 1 -%>
+<% if (local_file_name === 'contact') { -%>
+  <% include ../contact/body -%>
+  <% local_file_name = false; -%>
+<% } -%>
+<% // end case 1 -%>
 
-<!-- default case -->
-<% if (file_name) { %>
-  <% include ../variable_content/default_content %>
-<% } %>
-<!-- end default case -->
+<% // case 2 -%>
+<% if (local_file_name === 'about') { -%>
+  <% include ../about/body -%>
+  <% local_file_name = false; -%>
+<% } -%>
+<% // end case 2 -%>
 
+<% // default case -%>
+<% if (local_file_name) { -%>
+  <% include ../variable_content/default_content -%>
+<% } -%>
+<% // end default case -%>
 
-
-
-
-
-
+<% })(); -%>
+<% // end anonymous function -%>

@@ -305,6 +305,10 @@ This builds static html into demo/production/
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+### 0.3.5
+* Added file_name variable to allow template extension.
+* See discussion on [Github](https://github.com/shaekuronen/grunt-ejs-static/issues/2).
+
 ### 0.3.2
 * Moved logic into modules.
 * Improved management of data files. Combine files, or parse for a specific key, prior to rendering.
