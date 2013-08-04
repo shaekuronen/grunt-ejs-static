@@ -1,6 +1,7 @@
 'use strict';
 
 var grunt = require('grunt');
+var path = require('path');
 
 /*
   ======== A Handy Little Nodeunit Reference ========
@@ -24,29 +25,51 @@ var grunt = require('grunt');
 
 exports.ejs_static = {
 
-  setUp: function(done) {
-    // setup here if necessary
-    done();
-  },
-
-  default_options: function(test) {
+  test1: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/default_options');
-    var expected = grunt.file.read('test/expected/default_options');
-    test.equal(actual, expected, 'should describe what the default behavior is.');
+    var actual = grunt.file.read('tests/test1/index.html');
+    var expected = grunt.file.read('test/expected/index.html');
+    test.equal(actual, expected, 'Test1 should output files without parent dirs');
 
     test.done();
   },
 
-  custom_options: function(test) {
+  test2: function(test) {
     test.expect(1);
 
-    var actual = grunt.file.read('tmp/custom_options');
-    var expected = grunt.file.read('test/expected/custom_options');
-    test.equal(actual, expected, 'should describe what the custom option(s) behavior is.');
+    var actual = grunt.file.read('tests/test2/about/index.html');
+    var expected = grunt.file.read('test/expected/about/index.html');
+    test.equal(actual, expected, 'Test2 should output files with parent dirs');
 
     test.done();
   },
+
+  test3: function(test) {
+    test.expect(1);
+
+    var file = grunt.file.read('tests/test3/project/project-name.html');
+    test.ok(file, 'Test3 should find file project/project-name.html');
+
+    test.done();
+  },
+
+  test4: function(test) {
+    test.expect(1);
+
+    var file = grunt.file.read('tests/test4/project/project_name.html');
+    test.ok(file, 'Test4 should find file project/project_name.html');
+
+    test.done();
+  },
+
+  test5: function(test) {
+    test.expect(1);
+
+    var file = grunt.file.read('tests/test5/index.php');
+    test.ok(file, 'Test5 should find file index.php');
+
+    test.done();
+  }
 
 };

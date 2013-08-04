@@ -29,11 +29,12 @@ module.exports = function(grunt) {
       preview: ['demo/preview'],
       optimize: ['demo/production'],
       post_optimize: [
-        'demo/production/pages', 
+        'demo/production/pages',
         'demo/production/templates',
         'demo/production/head.ejs',
         'demo/production/scripts.ejs'
-      ]
+      ],
+      test: ['tests/test*']
     },
 
     copy: {
@@ -67,7 +68,7 @@ module.exports = function(grunt) {
       html: [
         'demo/production/head.ejs',
         'demo/production/scripts.ejs'
-      ]     
+      ]
     },
 
     // update the scripts links to point to the concatenated and minified js/main.js
@@ -84,12 +85,10 @@ module.exports = function(grunt) {
           dest: 'demo/preview',
           path_to_data: 'demo/dev/data/data.json',
           path_to_layouts: 'demo/dev/layouts/',
-          global_data: 'global'
-          // index_page: 'home',
-          // parent_dirs: false,
-          // underscores_to_dashes: true,
-          // file_extension: '.html',
-          // path_separator: '/'
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: true,
+          file_extension: '.html'
         }
       },
       optimize: {
@@ -100,16 +99,70 @@ module.exports = function(grunt) {
           index_page: 'home',
           parent_dirs: false,
           underscores_to_dashes: true,
-          file_extension: '.html',
-          global_data: 'global',
-          path_separator: '/'
+          file_extension: '.html'
+        }
+      },
+      test1: {
+        options: {
+          dest: 'tests/test1',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: true,
+          file_extension: '.html'
+        }
+      },
+      test2: {
+        options: {
+          dest: 'tests/test2',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: true,
+          underscores_to_dashes: true,
+          file_extension: '.html'
+        }
+      },
+      test3: {
+        options: {
+          dest: 'tests/test3',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: true,
+          file_extension: '.html'
+        }
+      },
+      test4: {
+        options: {
+          dest: 'tests/test4',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: false,
+          file_extension: '.html'
+        }
+      },
+      test5: {
+        options: {
+          dest: 'tests/test5',
+          path_to_data: 'demo/dev/data/data.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: true,
+          file_extension: '.php'
         }
       }
     },
 
     // Unit tests.
     nodeunit: {
-      tests: ['test/*_test.js'],
+      // tests: ['test/*_test.js'],
+      tests: ['test/ejs_static_test.js'],
     },
 
   });
@@ -130,9 +183,9 @@ module.exports = function(grunt) {
   // build the site for preview during development
   grunt.registerTask('preview', [
     'clean:preview',
-    'copy:preview', 
+    'copy:preview',
     'ejs_static:preview'
-    // , 
+    // ,
     // 'nodeunit'
   ]);
 
@@ -140,15 +193,26 @@ module.exports = function(grunt) {
   grunt.registerTask('optimize', [
     'clean:optimize',
     'copy:optimize',
-    'useminPrepare', 
-    'concat', 
-    'cssmin', 
-    'uglify',  
-    'usemin', 
+    'useminPrepare',
+    'concat',
+    'cssmin',
+    'uglify',
+    'usemin',
     'ejs_static:optimize',
     'clean:post_optimize'
-    // , 
+    // ,
     // 'nodeunit'
+  ]);
+
+  // test
+  grunt.registerTask('test', [
+    'clean:test',
+    'ejs_static:test1',
+    'ejs_static:test2',
+    'ejs_static:test3',
+    'ejs_static:test4',
+    'ejs_static:test5',
+    'nodeunit'
   ]);
 
 };
