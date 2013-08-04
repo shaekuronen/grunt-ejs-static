@@ -1,12 +1,14 @@
 # grunt-ejs-static
 
-Grunt EJS Static takes an MVC approach to building a static site generator using EJS and Grunt.  
+[![Build Status](https://travis-ci.org/shaekuronen/grunt-ejs-static.png?branch=master)](https://travis-ci.org/shaekuronen/grunt-ejs-static)
 
-Models can be defined in multiple JSON files, which helps keep logic out of the templates and the data more maintainable.  
+Grunt EJS Static takes an MVC approach to building a static site generator using EJS and Grunt.
 
-Views are defined in layout files, which are top-level templates utilizing EJS Includes to manage layout.  
+Models can be defined in multiple JSON files, which helps keep logic out of the templates and the data more maintainable.
 
-The controller is a JSON file (such as routes.json) which defines files to render, as well as each file's layout and any additional data needed for rendering.   
+Views are defined in layout files, which are top-level templates utilizing EJS Includes to manage layout.
+
+The controller is a JSON file (such as routes.json) which defines files to render, as well as each file's layout and any additional data needed for rendering.
 
 For examples, please see demo/ and Usage section below
 
@@ -32,11 +34,11 @@ In your project's Gruntfile, add a section named `ejs_static` to the data object
 
 The required options are dest and path_to_data.
 
-Conditionally required options are path_to_layouts.  
+Conditionally required options are path_to_layouts.
 
-If layout paths are specified in data.json (recommended), options.path_to_layouts is not necessary.  
+If layout paths are specified in data.json (recommended), options.path_to_layouts is not necessary.
 
-If layout paths are not specified, ejs_static falls back to searching the dir specified in options.path_to_layouts.     
+If layout paths are not specified, ejs_static falls back to searching the dir specified in options.path_to_layouts.
 
 ```js
 grunt.initConfig({
@@ -99,7 +101,7 @@ Additional data from `meta.json`
   }
 }
 ```
-Generates this JSON data model 
+Generates this JSON data model
 ```json
 {
   "global": {
@@ -207,7 +209,7 @@ Outputs this HTML
 
   <!-- footer -->
   <div class="container">
-      
+
     <footer>
         <p>&copy; Company 2012</p>
     </footer>
@@ -224,7 +226,7 @@ Outputs this HTML
 
 ### Options
 
-#### options.dest 
+#### options.dest
 Required
 Type: `String`
 
@@ -240,13 +242,13 @@ This is the path to the JSON file that determines what files are rendered
 Optional
 Type: `String`
 
-This is the path to the layout files directory 
+This is the path to the layout files directory
 
 #### options.index_page
 Optional
 Type: `String`
 
-This sets the index page for the site 
+This sets the index page for the site
 
 #### options.parent_dirs
 Optional
@@ -272,9 +274,9 @@ If false, underscores are not converted
 Optional
 Type: `String`
 
-This defines the file extension of rendered files  
+This defines the file extension of rendered files
 
-Defaults to .html, but could be .php, .aspx, etc 
+Defaults to .html, but could be .php, .aspx, etc
 
 
 ### Examples
@@ -297,7 +299,7 @@ To demo optimizing the site for deployment to production
 grunt optimize
 ```
 
-This builds static html into demo/production/ 
+This builds static html into demo/production/
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
@@ -305,9 +307,9 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Release History
 ### 0.3.2
 * Moved logic into modules.
-* Improved management of data files. Combine files, or parse for a specific key, prior to rendering. 
+* Improved management of data files. Combine files, or parse for a specific key, prior to rendering.
 
-### 0.3.0 
+### 0.3.0
 * Complete rewrite.  More flexible, less opinionated.
 * Now data-driven. Files to be rendered are defined in JSON file, not in the file structure.
 * Backwards compatible, though ejs_static options need to be updated in Gruntfile.
