@@ -10,7 +10,9 @@ Views are defined in layout files, which are top-level templates utilizing EJS I
 
 The controller is a JSON file (such as routes.json) which defines files to render, as well as each file's layout and any additional data needed for rendering.
 
-For examples, please see demo/ and Usage section below
+For examples, please see demo/ and Usage section below.
+
+There is also a project boilerplate available [grunt-ejs-static-boilerplate](https://github.com/shaekuronen/grunt-ejs-static-boilerplate)
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -34,9 +36,11 @@ In your project's Gruntfile, add a section named `ejs_static` to the data object
 
 The required options are dest and path_to_data.
 
-Conditionally required options are path_to_layouts.
+Conditionally required options are path_to_layouts.  If options.path_to_layouts is specified, layout can be specified in the controller json (such as routes.json).
 
-If layout paths are specified in data.json (recommended), options.path_to_layouts is not necessary.
+If path_to_layout is specified in routes.json, options.path_to_layouts is not necessary.  This option does not work well with grunt-usemin, so if you're using it may be better to specify options.path_to_layouts + layout in controller json file.
+
+Important note:  to use a layout for multiple pages, there are two methods.  One is to specify path_to_layout in routes.json.  The other is to specify options.path_to_layouts + layout in controller json file.
 
 If layout paths are not specified, ejs_static falls back to searching the dir specified in options.path_to_layouts.
 
@@ -305,6 +309,10 @@ This builds static html into demo/production/
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+### 0.3.7
+* Added dashed_file_name variable to make easier to include page name into CSS.
+* Added option to specify layout (vs. path_to_layout) in controller json file. This can be used in combination with path_to_layouts, which is specified in Gruntfile ejs_static options.
+
 ### 0.3.5
 * Added file_name variable to allow template extension.
 * See discussion on [Github](https://github.com/shaekuronen/grunt-ejs-static/issues/2).
