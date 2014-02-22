@@ -28,17 +28,18 @@ module.exports = function(grunt) {
     });
 
 
-    var helpers = {};
+    var helpers_global = {};
 
     if (options.helper_functions) {
       var helpers = ejs_static.get_helper_functions(options);
+      _.extend(helpers_global, helpers);
       grunt.log.debug('helpers are ' + helpers);
     } else {
       grunt.log.debug('no helper functions in options object');
     }
 
     // at a minumum make underscore available in the templates
-    _.extend(helpers, _);
+    _.extend(helpers_global, _);
 
 
     // get the files to render, which are declared in the options.path_to_data JSON file
@@ -54,7 +55,7 @@ module.exports = function(grunt) {
       var layout_data = ejs_static.get_layout(key, files, options);
 
       // render the file
-      var rendered_file = ejs_static.render_file(layout_data, file_data, helpers);
+      var rendered_file = ejs_static.render_file(layout_data, file_data, helpers_global);
 
       // write the file to the destination directory
       ejs_static.write_file(key, files, rendered_file, options);

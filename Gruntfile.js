@@ -91,10 +91,20 @@ module.exports = function(grunt) {
           file_extension: '.html',
           helper_functions: {
             func1: function(text) {
-              exports.write("<h1>func1 " + text + "</h1>");
+              return "<h1>func1 " + text + "</h1>";
             },
             func2: function(text) {
               grunt.log.debug('value for text is currently ' + text);
+            },
+            log: function(text) {
+              console.log('THE TEXT ISSSSSSSSSSSSSSS ' + text);
+            },
+            print_object: function(obj) {
+              var output = '';
+              for(var property in obj) {
+                output += property + ': ' + obj[property]+'; \n';
+              }
+              console.log(output);
             }
           }
         }
@@ -186,10 +196,20 @@ module.exports = function(grunt) {
           file_extension: '.html',
           helper_functions: {
             func1: function(text) {
-              console.log("<h1>func1 " + text + "</h1>");
+              return "<h1>func1 " + text + "</h1>";
             },
             func2: function(text) {
-              console.log('value for text is currently ' + text);
+              grunt.log.debug('value for text is currently ' + text);
+            },
+            log: function(text) {
+              console.log('THE TEXT ISSSSSSSSSSSSSSS ' + text);
+            },
+            print_object: function(obj) {
+              var output = '';
+              for(var property in obj) {
+                output += property + ': ' + obj[property]+'; \n';
+              }
+              console.log(output);
             }
           }
         }
