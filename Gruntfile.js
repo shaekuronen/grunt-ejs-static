@@ -111,10 +111,10 @@ module.exports = function(grunt) {
           helper_functions: [
             'demo/dev/js/site/helper_function1.js',
             'demo/dev/js/site/helper_function2.js'
-
           ]
         }
       },
+      // test that parent_dirs false works as expected
       test1: {
         options: {
           dest: 'tests/test1',
@@ -126,6 +126,7 @@ module.exports = function(grunt) {
           file_extension: '.html'
         }
       },
+      // test that parent_dirs true works as expected
       test2: {
         options: {
           dest: 'tests/test2',
@@ -137,6 +138,7 @@ module.exports = function(grunt) {
           file_extension: '.html'
         }
       },
+      // test that underscores_to_dashes true works as expected
       test3: {
         options: {
           dest: 'tests/test3',
@@ -148,6 +150,7 @@ module.exports = function(grunt) {
           file_extension: '.html'
         }
       },
+      // test that underscores_to_dashes false works as expected
       test4: {
         options: {
           dest: 'tests/test4',
@@ -159,6 +162,7 @@ module.exports = function(grunt) {
           file_extension: '.html'
         }
       },
+      // test that changing file_extension works as expected
       test5: {
         options: {
           dest: 'tests/test5',
@@ -174,35 +178,38 @@ module.exports = function(grunt) {
       test6: {
         options: {
           dest: 'tests/test6',
-          path_to_data: 'demo/dev/data/data.json',
+          path_to_data: 'test/data/helper_function_test.json',
           path_to_layouts: 'demo/dev/layouts',
           index_page: 'home',
           parent_dirs: false,
           underscores_to_dashes: true,
-          file_extension: '.php',
+          file_extension: '.html',
           helper_functions: {
-            helper1: function(some_text) {
-              console.log('helper_function #1 says ' + some_text);
+            func1: function(text) {
+              console.log("<h1>func1 " + text + "</h1>");
+            },
+            func2: function(text) {
+              console.log('value for text is currently ' + text);
             }
           }
         }
       },
       // test include helper functions as an array
-      test7: {
-        options: {
-          dest: 'tests/test6',
-          path_to_data: 'demo/dev/data/data.json',
-          path_to_layouts: 'demo/dev/layouts',
-          index_page: 'home',
-          parent_dirs: false,
-          underscores_to_dashes: true,
-          file_extension: '.php',
-          helper_functions: [
-            'path/to/file1.js',
-            'path/to/file2.js',
-            'path/to/file3.js']
-        }
-      }
+      // test7: {
+      //   options: {
+      //     dest: 'tests/test7',
+      //     path_to_data: 'demo/dev/data/data.json',
+      //     path_to_layouts: 'demo/dev/layouts',
+      //     index_page: 'home',
+      //     parent_dirs: false,
+      //     underscores_to_dashes: true,
+      //     file_extension: '.html',
+      //     helper_functions: [
+      //       'path/to/file1.js',
+      //       'path/to/file2.js',
+      //       'path/to/file3.js']
+      //   }
+      // }
 
     },
 
@@ -254,6 +261,8 @@ module.exports = function(grunt) {
     'ejs_static:test3',
     'ejs_static:test4',
     'ejs_static:test5',
+    'ejs_static:test6',
+    // 'ejs_static:test7',
     'nodeunit'
   ]);
 

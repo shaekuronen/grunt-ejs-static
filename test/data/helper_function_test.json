@@ -1,0 +1,29 @@
+{
+
+  "home": {
+    "meta": {
+      "title": "Home",
+      "description": "Compile static html from ejs templates",
+      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+    }
+  },
+
+  "about": {
+    "path_to_layout": "demo/dev/layouts/default.ejs",
+    "meta": {
+      "title": "About",
+      "description": "Compile static html from ejs templates",
+      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+    }
+  },
+
+  "helper_functions": {
+    "path_to_layout": "demo/dev/layouts/helper_functions.ejs",
+    "meta": {
+      "title": "Helper Functions Test",
+      "description": "Some description here",
+      "keywords": ""
+    }
+  }
+
+}
