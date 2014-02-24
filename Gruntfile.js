@@ -89,22 +89,7 @@ module.exports = function(grunt) {
           parent_dirs: false,
           underscores_to_dashes: true,
           file_extension: '.html',
-          underscore: true,
-          helper_functions: {
-            highlight: function(text) {
-              return "<h1 style='color:red;'>" + text + "</h1>";
-            },
-            func2: function(text) {
-              grunt.log.debug('value for text is currently ' + text);
-            },
-            print_object: function(obj) {
-              var output = '';
-              for(var property in obj) {
-                output += property + ': ' + obj[property]+'; \n';
-              }
-              console.log(output);
-            }
-          }
+          underscore: true
         }
       },
       optimize: {
@@ -200,15 +185,12 @@ module.exports = function(grunt) {
             build_url: function(scheme, hostname, path, queries) {
               console.log('this hnappen ' + queries);
               var url = "";
-              console.log("url is now " + url);
               url += scheme;
               url += "://";
               url += hostname;
               url += path;
               if (queries.length > 0) {
                 url += "?";
-                console.log(url);
-                console.log(queries);
                 queries.forEach(function(query, index) {
                   if (index === 0) {
                     url += query;
