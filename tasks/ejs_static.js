@@ -24,22 +24,33 @@ module.exports = function(grunt) {
       dest: 'dist',
       parent_dirs: false,
       file_extension: '.html',
-      underscores_to_dashes: true
+      underscores_to_dashes: true,
+      underscore: true
     });
 
+    // helper functions
 
+    // create a global object to attach any helper functions to
     var helpers_global = {};
 
     if (options.helper_functions) {
+      // process specified helper functions
       var helpers = ejs_static.get_helper_functions(options);
+      // add them to the global object
       _.extend(helpers_global, helpers);
       grunt.log.debug('helpers are ' + helpers);
     } else {
       grunt.log.debug('no helper functions in options object');
     }
 
-    // at a minumum make underscore available in the templates
-    _.extend(helpers_global, _);
+    // make underscore available in the templates
+    if (options.underscore === true) {
+      _.extend(helpers_global, _);
+    } else {
+      grunt.log.debug('options.underscore not set to Boolean true');
+    }
+
+    // end helper functions
 
 
     // get the files to render, which are declared in the options.path_to_data JSON file
