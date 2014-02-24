@@ -192,15 +192,13 @@ module.exports = function(grunt) {
           parent_dirs: false,
           underscores_to_dashes: true,
           file_extension: '.html',
+          underscore: true,
           helper_functions: {
-            func1: function(text) {
-              return "<h1>func1 " + text + "</h1>";
+            highlight: function(text) {
+              return "<h1 style='color:red;'>" + text + "</h1>";
             },
             func2: function(text) {
               grunt.log.debug('value for text is currently ' + text);
-            },
-            log: function(text) {
-              console.log('THE TEXT ISSSSSSSSSSSSSSS ' + text);
             },
             print_object: function(obj) {
               var output = '';
@@ -281,6 +279,13 @@ module.exports = function(grunt) {
     'ejs_static:test5',
     'ejs_static:test6',
     // 'ejs_static:test7',
+    'nodeunit'
+  ]);
+
+  // test
+  grunt.registerTask('test6', [
+    'clean:test',
+    'ejs_static:test6',
     'nodeunit'
   ]);
 
