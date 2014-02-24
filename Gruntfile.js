@@ -197,8 +197,27 @@ module.exports = function(grunt) {
             highlight: function(text) {
               return "<h1 style='color:red;'>" + text + "</h1>";
             },
-            func2: function(text) {
-              grunt.log.debug('value for text is currently ' + text);
+            build_url: function(scheme, hostname, path, queries) {
+              console.log('this hnappen ' + queries);
+              var url = "";
+              console.log("url is now " + url);
+              url += scheme;
+              url += "://";
+              url += hostname;
+              url += path;
+              if (queries.length > 0) {
+                url += "?";
+                console.log(url);
+                console.log(queries);
+                queries.forEach(function(query, index) {
+                  if (index === 0) {
+                    url += query;
+                  } else {
+                    url += "&" + query;
+                  }
+                });
+              }
+              return url;
             },
             print_object: function(obj) {
               var output = '';
