@@ -25,7 +25,7 @@ module.exports = function(grunt) {
       parent_dirs: false,
       file_extension: '.html',
       underscores_to_dashes: true,
-      underscore: true
+      underscore: false
     });
 
     // helper functions
