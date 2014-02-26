@@ -33,7 +33,7 @@ module.exports = function(grunt) {
     // create a global object to attach any helper functions to
     var helpers_global = {};
 
-    if (options.helper_functions) {
+    if (options.helpers) {
       // process specified helper functions
       var helpers = ejs_static.get_helper_functions(options);
       // add them to the global object

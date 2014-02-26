@@ -76,19 +76,27 @@ exports.ejs_static = {
     test.expect(1);
 
     var file = grunt.file.read('tests/test6/helper-functions.html');
-    test.ok(file, 'Test6 should find file index.php');
+    test.ok(file, 'Test6 should find file helper-functions.html');
+
+    test.done();
+  },
+
+  test7: function(test) {
+    test.expect(1);
+
+    var file = grunt.file.read('tests/test7/helper-functions.html');
+    test.ok(file, 'Test7 should find file helper-functions.html');
+
+    test.done();
+  },
+
+  test8: function(test) {
+    test.expect(1);
+
+    var file = grunt.file.read('tests/test8/helper-functions.html');
+    test.ok(file, 'Test8 should find file helper-functions.html');
 
     test.done();
   }
-  // ,
-
-  // test7: function(test) {
-  //   test.expect(1);
-
-  //   var file = grunt.file.read('tests/test7/index.php');
-  //   test.ok(file, 'Test7 should find file index.php');
-
-  //   test.done();
-  // }
 
 };

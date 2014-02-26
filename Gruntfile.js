@@ -100,11 +100,7 @@ module.exports = function(grunt) {
           index_page: 'home',
           parent_dirs: false,
           underscores_to_dashes: true,
-          file_extension: '.html',
-          helper_functions: [
-            'demo/dev/js/site/helper_function1.js',
-            'demo/dev/js/site/helper_function2.js'
-          ]
+          file_extension: '.html'
         }
       },
       // test that parent_dirs false works as expected
@@ -178,7 +174,7 @@ module.exports = function(grunt) {
           underscores_to_dashes: true,
           file_extension: '.html',
           underscore: true,
-          helper_functions: {
+          helpers: {
             highlight: function(text) {
               return "<h1 style='color:red;'>" + text + "</h1>";
             },
@@ -212,21 +208,36 @@ module.exports = function(grunt) {
         }
       },
       // test include helper functions as an array
-      // test7: {
-      //   options: {
-      //     dest: 'tests/test7',
-      //     path_to_data: 'demo/dev/data/data.json',
-      //     path_to_layouts: 'demo/dev/layouts',
-      //     index_page: 'home',
-      //     parent_dirs: false,
-      //     underscores_to_dashes: true,
-      //     file_extension: '.html',
-      //     helper_functions: [
-      //       'path/to/file1.js',
-      //       'path/to/file2.js',
-      //       'path/to/file3.js']
-      //   }
-      // }
+      test7: {
+        options: {
+          dest: 'tests/test7',
+          path_to_data: 'test/data/helper_function_test.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: true,
+          file_extension: '.html',
+          underscore: true,
+          helpers: [
+            'demo/dev/js/site/helper_functions1.js',
+            'demo/dev/js/site/helper_functions2.js'
+          ]
+        }
+      },
+      // test include helper functions as an string
+      test8: {
+        options: {
+          dest: 'tests/test8',
+          path_to_data: 'test/data/helper_function_test.json',
+          path_to_layouts: 'demo/dev/layouts',
+          index_page: 'home',
+          parent_dirs: false,
+          underscores_to_dashes: true,
+          file_extension: '.html',
+          underscore: true,
+          helpers: 'demo/dev/js/site/helper_functions3.js'
+        }
+      }
 
     },
 
@@ -279,14 +290,8 @@ module.exports = function(grunt) {
     'ejs_static:test4',
     'ejs_static:test5',
     'ejs_static:test6',
-    // 'ejs_static:test7',
-    'nodeunit'
-  ]);
-
-  // test
-  grunt.registerTask('test6', [
-    'clean:test',
-    'ejs_static:test6',
+    'ejs_static:test7',
+    'ejs_static:test8',
     'nodeunit'
   ]);
 
