@@ -1,0 +1,45 @@
+{
+
+  "default": {
+    "title": "Home",
+    "description": "Compile static html from ejs templates",
+    "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+  },
+
+  "home": {
+    "title": "Home",
+    "description": "Compile static html from ejs templates",
+    "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+  },
+
+  "about": {
+    "title": "About",
+    "description": "Compile static html from ejs templates",
+    "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+  },
+
+  "work": {
+    "title": "Work",
+    "description": "Compile static html from ejs templates",
+    "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+  },
+
+  "contact": {
+    "title": "Contact",
+    "description": "Compile static html from ejs templates",
+    "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
+  },
+
+  "flexbox": {
+    "title": "Flexible Box Model",
+    "description": "Future Proof Flexbox",
+    "keywords": ""
+  },
+
+  "project_name": {
+    "title": "Responsive Design Project",
+    "description": "Some description here",
+    "keywords": ""
+  }
+
+}

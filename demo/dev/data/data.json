@@ -1,58 +1,52 @@
 {
 
   "home": {
-    "meta": {
-      "title": "Home",
-      "description": "Compile static html from ejs templates",
-      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
-    }
+    "path_to_data": [
+      "demo/dev/data/global.json",
+      {"demo/dev/data/meta.json": "home"}
+    ]
   },
 
   "about": {
     "path_to_layout": "demo/dev/layouts/default.ejs",
-    "meta": {
-      "title": "About",
-      "description": "Compile static html from ejs templates",
-      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
-    }
+    "path_to_data": [
+      "demo/dev/data/global.json",
+      {"demo/dev/data/meta.json": "about"}
+    ]
   },
 
   "work": {
     "path_to_layout": "demo/dev/layouts/default.ejs",
-    "meta": {
-      "title": "Work",
-      "description": "Compile static html from ejs templates",
-      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
-    }
+    "path_to_data": [
+      "demo/dev/data/global.json",
+      {"demo/dev/data/meta.json": "work"}
+    ]
   },
 
   "contact": {
     "path_to_layout": "demo/dev/layouts/default.ejs",
-    "meta": {
-      "title": "Contact",
-      "description": "Compile static html from ejs templates",
-      "keywords": "gruntplugin, ejs, static html, static site generator, templates, templating engine, template, embedded js"
-    }
+    "path_to_data": [
+      "demo/dev/data/global.json",
+      {"demo/dev/data/meta.json": "contact"}
+    ]
   },
 
   "flexbox": {
     "category": "lab",
     "path_to_layout": "demo/dev/layouts/experiment.ejs",
-    "meta": {
-      "title": "Flexible Box Model",
-      "description": "Future Proof Flexbox",
-      "keywords": ""
-    }
+    "path_to_data": [
+      "demo/dev/data/global.json",
+      {"demo/dev/data/meta.json": "flexbox"}
+    ]
   },
 
   "project_name": {
     "category": "project",
     "path_to_layout": "demo/dev/layouts/project.ejs",
-    "meta": {
-      "title": "Responsive Design Project",
-      "description": "Some description here",
-      "keywords": ""
-    }
+    "path_to_data": [
+      "demo/dev/data/global.json",
+      {"demo/dev/data/meta.json": "project_name"}
+    ]
   }
 
 }
