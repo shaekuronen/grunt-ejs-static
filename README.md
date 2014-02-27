@@ -282,6 +282,86 @@ This defines the file extension of rendered files
 
 Defaults to .html, but could be .php, .aspx, etc
 
+#### options.helpers
+Optional
+Type: `String`, `Object`, or `Array`
+
+Helper functions can be defined in 3 ways.  If a string, indicates the path to a single file containing one or more helper functions.  An array indicates multiple paths to files containing one or more helper functions.  An object defines one or more helper functions inline (in the Gruntfile).  The key is the function name and the value is the function.
+
+```javascript
+ejs_static: {
+  // single file example
+  string: {
+    options: {
+      dest: 'dist',
+      path_to_data: 'path/to/data.json',
+      path_to_layouts: 'path/to/layouts',
+      underscore: true,
+      helpers: 'demo/dev/js/site/helper_functions3.js'
+    }
+  },
+  // inline example
+  object: {
+    options: {
+      dest: 'dist',
+      path_to_data: 'path/to/data.json',
+      path_to_layouts: 'path/to/layouts',
+      underscore: true,
+      helpers: {
+        highlight: function(text) {
+          return "<h1 style='color:red;'>" + text + "</h1>";
+        },
+        build_url: function(scheme, hostname, path, queries) {
+          console.log('this hnappen ' + queries);
+          var url = "";
+          url += scheme;
+          url += "://";
+          url += hostname;
+          url += path;
+          if (queries.length > 0) {
+            url += "?";
+            queries.forEach(function(query, index) {
+              if (index === 0) {
+                url += query;
+              } else {
+                url += "&" + query;
+              }
+            });
+          }
+          return url;
+        },
+        print_object: function(obj) {
+          var output = '';
+          for(var property in obj) {
+            output += property + ': ' + obj[property]+'; \n';
+          }
+          console.log(output);
+        }
+      }
+    }
+  },
+  // multiple files example
+  array: {
+    options: {
+      dest: 'dist',
+      path_to_data: 'path/to/data.json',
+      path_to_layouts: 'path/to/layouts',
+      underscore: true,
+      helpers: [
+        'demo/dev/js/site/helper_functions1.js',
+        'demo/dev/js/site/helper_functions2.js'
+      ]
+    }
+  }
+}
+```
+
+#### options.underscore
+Optional
+Type: `Boolean`
+Default: False
+
+Defines whether Underscore is available in the templates at render time.
 
 ### Examples
 
@@ -309,6 +389,10 @@ This builds static html into demo/production/
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
 
 ## Release History
+### 0.3.8
+* Added support for helper functions.
+* Added option to make Underscore JS available in the templates.
+
 ### 0.3.7
 * Added dashed_file_name variable to make easier to include page name into CSS.
 * Added option to specify layout (vs. path_to_layout) in controller json file. This can be used in combination with path_to_layouts, which is specified in Gruntfile ejs_static options.
