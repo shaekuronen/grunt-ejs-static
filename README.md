@@ -286,7 +286,7 @@ Defaults to .html, but could be .php, .aspx, etc
 Optional
 Type: `String`, `Object`, or `Array`
 
-Helper functions can be defined in 3 ways.  If a string, indicates the path to a single file containing one or more helper functions.  An array indicates multiple paths to files containing one or more helper functions.  An object defines one or more helper functions inline (in the Gruntfile).  The key is the function name and the value is the function.
+Helper functions can be defined in 3 ways.  If a string, indicates the path to a single file containing one or more helper functions.  An array indicates multiple paths to files containing one or more helper functions.  An object defines one or more helper functions inline (in the Gruntfile).  The key is the function name and the value is the function expression.
 
 ```javascript
 ejs_static: {
@@ -310,25 +310,6 @@ ejs_static: {
       helpers: {
         highlight: function(text) {
           return "<h1 style='color:red;'>" + text + "</h1>";
-        },
-        build_url: function(scheme, hostname, path, queries) {
-          console.log('this hnappen ' + queries);
-          var url = "";
-          url += scheme;
-          url += "://";
-          url += hostname;
-          url += path;
-          if (queries.length > 0) {
-            url += "?";
-            queries.forEach(function(query, index) {
-              if (index === 0) {
-                url += query;
-              } else {
-                url += "&" + query;
-              }
-            });
-          }
-          return url;
         },
         print_object: function(obj) {
           var output = '';
@@ -354,6 +335,52 @@ ejs_static: {
     }
   }
 }
+```
+If included as a file, needs to be wrapped w/ module.exports
+```javascript
+module.exports = exports = {
+
+  build_url: function(scheme, hostname, path, queries) {
+    console.log('this hnappen ' + queries);
+    var url = "";
+    url += scheme;
+    url += "://";
+    url += hostname;
+    url += path;
+    if (queries.length > 0) {
+      url += "?";
+      queries.forEach(function(query, index) {
+        if (index === 0) {
+          url += query;
+        } else {
+          url += "&" + query;
+        }
+      });
+    }
+    return url;
+  },
+
+  print_object: function(obj) {
+    var output = '';
+    for(var property in obj) {
+      output += property + ': ' + obj[property]+'; \n';
+    }
+    console.log(output);
+  },
+
+  highlight: function(text) {
+    return "<h1 style='color:red;'>" + text + "</h1>";
+  }
+
+};
+```
+which can then be used in a template like this
+```ejs
+<%- highlight('This Text')  -%>
+
+<%= build_url("https", "www.google.com", "/search", ['q=unicorns', 'oq=unicorns']) %>
+
+<% print_object(this); %>
 ```
 
 #### options.underscore
