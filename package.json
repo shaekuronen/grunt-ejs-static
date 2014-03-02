@@ -28,7 +28,8 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "ejs": "~0.8.4"
+    "ejs": "~0.8.4",
+    "underscore": "~1.6.0"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.2",
@@ -40,8 +41,7 @@
     "grunt-usemin": "~0.1.11",
     "grunt-contrib-uglify": "~0.2.0",
     "grunt-contrib-cssmin": "~0.6.0",
-    "grunt-contrib-concat": "~0.3.0",
-    "underscore": "~1.6.0"
+    "grunt-contrib-concat": "~0.3.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
