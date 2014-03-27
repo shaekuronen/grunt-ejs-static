@@ -1,7 +1,7 @@
 {
   "name": "grunt-ejs-static",
-  "description": "Grunt EJS Static is a static site generator utilizing EJS and Grunt. Pages are defined in JSON by declaring the layout file and any additional data needed at render time.  The layout file manages EJS Includes, which are partials organized in the components directory.",
-  "version": "0.4.1",
+  "description": "Grunt EJS Static is a static site generator built with EJS and Grunt. Pages are defined in JSON by declaring the layout file and any additional data needed at render time.  The layout file manages EJS Includes, which are partials organized in the components directory.",
+  "version": "0.4.2",
   "homepage": "https://github.com/shaekuronen/grunt-ejs-static",
   "author": {
     "name": "Shae Kuronen",
