@@ -28,7 +28,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "ejs": "~0.8.4",
+    "ejs": "git@github.com:orrsiloni/ejs.git",
     "underscore": "~1.6.0"
   },
   "devDependencies": {
